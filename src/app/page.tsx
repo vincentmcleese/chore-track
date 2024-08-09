@@ -1,10 +1,33 @@
-import { Button } from "@nextui-org/react";
+"use server";
 
-export default function Home() {
+const chores = require("@/db/chores.json");
+import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+
+export default async function Home() {
   return (
     <div>
       <h1>This is the homepage!</h1>
-      <Button>Begin</Button>
+      <div className=" flex flex-wrap items-center justify-center">
+        {chores.map((chore: any) => (
+          <div className="p-2" key={chore.key}>
+            <Card className="max-w-[400px]">
+              <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                <p className="text-tiny uppercase font-bold">{chore.owner}</p>
+                <small className="text-default-500">{chore.cadence}</small>
+                <h4 className="font-bold text-large">{chore.title}</h4>
+              </CardHeader>
+              <CardBody className="overflow-visible py-2">
+                <Image
+                  alt="Card background"
+                  className="object-cover rounded-xl"
+                  src="https://nextui.org/images/hero-card-complete.jpeg"
+                  width={270}
+                />
+              </CardBody>
+            </Card>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

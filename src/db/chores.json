@@ -1,0 +1,182 @@
+[
+    {
+        "key": "chore_01",
+        "title": "Vacuum the Living Room",
+        "description": "Vacuum all carpets and rugs in the living room.",
+        "owner": "John Doe",
+        "image_url": "https://example.com/images/vacuum_living_room.jpg",
+        "cadence": "weekly",
+        "last_completion_date": "2024-08-01"
+    },
+    {
+        "key": "chore_02",
+        "title": "Mow the Lawn",
+        "description": "Mow the front and back lawn.",
+        "owner": "Jane Smith",
+        "image_url": "https://example.com/images/mow_lawn.jpg",
+        "cadence": "bi-weekly",
+        "last_completion_date": "2024-07-30"
+    },
+    {
+        "key": "chore_03",
+        "title": "Clean the Bathroom",
+        "description": "Scrub the shower, sink, and toilet. Clean the mirrors.",
+        "owner": "Alice Johnson",
+        "image_url": "https://example.com/images/clean_bathroom.jpg",
+        "cadence": "weekly",
+        "last_completion_date": "2024-08-02"
+    },
+    {
+        "key": "chore_04",
+        "title": "Dust the Furniture",
+        "description": "Dust all surfaces including shelves, tables, and cabinets.",
+        "owner": "Bob Lee",
+        "image_url": "https://example.com/images/dust_furniture.jpg",
+        "cadence": "weekly",
+        "last_completion_date": "2024-08-03"
+    },
+    {
+        "key": "chore_05",
+        "title": "Wash the Car",
+        "description": "Wash the exterior of the car and clean the interior.",
+        "owner": "Sarah Davis",
+        "image_url": "https://example.com/images/wash_car.jpg",
+        "cadence": "monthly",
+        "last_completion_date": "2024-07-15"
+    },
+    {
+        "key": "chore_06",
+        "title": "Take Out the Trash",
+        "description": "Take out all household trash to the curb for pickup.",
+        "owner": "Michael Brown",
+        "image_url": "https://example.com/images/take_out_trash.jpg",
+        "cadence": "weekly",
+        "last_completion_date": "2024-08-04"
+    },
+    {
+        "key": "chore_07",
+        "title": "Clean the Refrigerator",
+        "description": "Remove expired food, clean shelves, and wipe down surfaces.",
+        "owner": "Emily White",
+        "image_url": "https://example.com/images/clean_refrigerator.jpg",
+        "cadence": "monthly",
+        "last_completion_date": "2024-07-28"
+    },
+    {
+        "key": "chore_08",
+        "title": "Sweep the Porch",
+        "description": "Sweep and tidy up the front and back porches.",
+        "owner": "David Green",
+        "image_url": "https://example.com/images/sweep_porch.jpg",
+        "cadence": "weekly",
+        "last_completion_date": "2024-08-03"
+    },
+    {
+        "key": "chore_09",
+        "title": "Clean the Windows",
+        "description": "Wash the interior and exterior of all windows.",
+        "owner": "Laura Black",
+        "image_url": "https://example.com/images/clean_windows.jpg",
+        "cadence": "quarterly",
+        "last_completion_date": "2024-06-01"
+    },
+    {
+        "key": "chore_10",
+        "title": "Organize the Garage",
+        "description": "Sort and tidy up the garage, disposing of unnecessary items.",
+        "owner": "Tom Wilson",
+        "image_url": "https://example.com/images/organize_garage.jpg",
+        "cadence": "annually",
+        "last_completion_date": "2023-12-15"
+    },
+    {
+        "key": "chore_11",
+        "title": "Change Air Filters",
+        "description": "Replace HVAC system air filters.",
+        "owner": "Megan Harris",
+        "image_url": "https://example.com/images/change_air_filters.jpg",
+        "cadence": "quarterly",
+        "last_completion_date": "2024-05-15"
+    },
+    {
+        "key": "chore_12",
+        "title": "Wash Bed Linens",
+        "description": "Wash and change bed sheets, pillowcases, and comforters.",
+        "owner": "Liam Walker",
+        "image_url": "https://example.com/images/wash_bed_linens.jpg",
+        "cadence": "bi-weekly",
+        "last_completion_date": "2024-07-29"
+    },
+    {
+        "key": "chore_13",
+        "title": "Clean the Oven",
+        "description": "Scrub and clean the interior of the oven.",
+        "owner": "Grace Martin",
+        "image_url": "https://example.com/images/clean_oven.jpg",
+        "cadence": "quarterly",
+        "last_completion_date": "2024-05-25"
+    },
+    {
+        "key": "chore_14",
+        "title": "Water the Plants",
+        "description": "Water all indoor and outdoor plants.",
+        "owner": "James Clark",
+        "image_url": "https://example.com/images/water_plants.jpg",
+        "cadence": "weekly",
+        "last_completion_date": "2024-08-03"
+    },
+    {
+        "key": "chore_15",
+        "title": "Clean the Dishwasher",
+        "description": "Run a cleaning cycle with dishwasher cleaner.",
+        "owner": "Anna Lewis",
+        "image_url": "https://example.com/images/clean_dishwasher.jpg",
+        "cadence": "monthly",
+        "last_completion_date": "2024-07-20"
+    },
+    {
+        "key": "chore_16",
+        "title": "Polish Wooden Furniture",
+        "description": "Apply wood polish to all wooden furniture surfaces.",
+        "owner": "Robert Young",
+        "image_url": "https://example.com/images/polish_furniture.jpg",
+        "cadence": "monthly",
+        "last_completion_date": "2024-07-22"
+    },
+    {
+        "key": "chore_17",
+        "title": "Clear Gutters",
+        "description": "Remove debris from gutters and ensure proper drainage.",
+        "owner": "Sophia King",
+        "image_url": "https://example.com/images/clear_gutters.jpg",
+        "cadence": "annually",
+        "last_completion_date": "2023-10-15"
+    },
+    {
+        "key": "chore_18",
+        "title": "Clean Out the Pantry",
+        "description": "Sort through pantry items and clean shelves.",
+        "owner": "Daniel Scott",
+        "image_url": "https://example.com/images/clean_pantry.jpg",
+        "cadence": "bi-annually",
+        "last_completion_date": "2024-04-01"
+    },
+    {
+        "key": "chore_19",
+        "title": "Vacuum the Car",
+        "description": "Vacuum the car interior, including seats and floor mats.",
+        "owner": "Olivia Taylor",
+        "image_url": "https://example.com/images/vacuum_car.jpg",
+        "cadence": "monthly",
+        "last_completion_date": "2024-07-18"
+    },
+    {
+        "key": "chore_20",
+        "title": "Clean the Microwave",
+        "description": "Wipe down the interior and exterior of the microwave.",
+        "owner": "Noah Anderson",
+        "image_url": "https://example.com/images/clean_microwave.jpg",
+        "cadence": "weekly",
+        "last_completion_date": "2024-08-01"
+    }
+]
