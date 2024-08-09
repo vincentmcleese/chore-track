@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <NextUIProvider>
           <Navbar />
-          <main>{children}</main>
+          <main className="flex min-h-screen flex-col items-center justify-between px-24">
+            {children}
+          </main>
         </NextUIProvider>
       </body>
     </html>
