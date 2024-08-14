@@ -1,5 +1,6 @@
 // install dependencies
 //create google client secret and ID
+//clear mongodb btw
 
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";

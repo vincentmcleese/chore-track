@@ -2,11 +2,13 @@
 
 const chores = require("@/db/chores.json");
 import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import { title, subtitle } from "@/components/primitives";
 
 export default async function Home() {
   return (
-    <div>
-      <h1>This is the homepage!</h1>
+    <div className="w-full px-4 sm:px-8 md:px-16 lg:px-24">
+      <h1 className={title({ color: "violet" })}>Chore-track</h1> <br />
+      <h3 className={subtitle()}>Keep Nigellestraat 12 clean and tidy. </h3>
       <div className=" flex flex-wrap items-center justify-center">
         {chores.map((chore: any) => (
           <div className="p-2" key={chore.key}>

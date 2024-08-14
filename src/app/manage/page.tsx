@@ -9,12 +9,15 @@ import {
   TableRow,
   TableCell,
 } from "@nextui-org/react";
+import { title, subtitle } from "@/components/primitives";
 
-export default async function Manage() {
+export default function Manage() {
   return (
-    <div>
-      <h1>This is the manage page!</h1>
-      <br />
+    <div className="w-full px-4 sm:px-8 md:px-16 lg:px-24">
+      <div className="place-content-center">
+        <h1 className={title({ color: "violet" })}>Manage</h1> <br />
+        <h3 className={subtitle()}>Overview of chores. Click to edit. </h3>
+      </div>
       <div className="">
         <Table aria-label="Example static collection table">
           <TableHeader>
