@@ -2,9 +2,8 @@
 
 import type { ChoreCompletion } from "@prisma/client";
 import { redirect } from "next/navigation";
-import { db } from "@/src/db";
+import { db } from "@/db";
 import { cn } from "tailwind-variants";
-
 
 export async function createCompletion(userId: any, formData: any) {
   console.log(userId);
@@ -30,5 +29,4 @@ export async function createCompletion(userId: any, formData: any) {
       },
     };
   }
-
 }

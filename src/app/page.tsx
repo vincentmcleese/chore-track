@@ -1,6 +1,7 @@
 "use server";
 
 const chores = require("@/db/chores.json");
+const db = require("@/db");
 import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 import { title, subtitle } from "@/components/primitives";
 
