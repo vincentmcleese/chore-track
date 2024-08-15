@@ -1,6 +1,6 @@
 "use server";
 
-import type { Chore, recurrenceEnum } from "@prisma/client";
+// import type { Chore, recurrenceEnum } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { db } from "@/db";
 // import paths from '@/paths';
