@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { NextUIProvider } from "@nextui-org/react";
+import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/common/navbar"; // Update the import path
@@ -19,12 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextUIProvider>
-          <Navbar />
-          <main className="flex min-h-screen flex-col items-center justify-between px-4 sm:px-8 md:px-16 lg:px-24">
-            {children}
-          </main>
-        </NextUIProvider>
+        <SessionProvider>
+          <NextUIProvider>
+            <Navbar />
+            <main className="flex min-h-screen flex-col items-center justify-between px-4 sm:px-8 md:px-16 lg:px-24">
+              {children}
+            </main>
+          </NextUIProvider>
+        </SessionProvider>
       </body>
     </html>
   );
