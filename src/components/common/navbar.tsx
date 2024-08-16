@@ -43,19 +43,26 @@ export const Navbar = () => {
         {!session.data?.user ? (
           <NavbarItem>
             <form action={actions.signIn}>
-              <Button type="submit" color="primary" variant="bordered">
+              <Button type="submit" color="secondary" variant="solid">
                 Sign In
               </Button>
             </form>
           </NavbarItem>
         ) : (
-          <NavbarItem>
-            <form action={actions.signOut}>
-              <Button type="submit" color="secondary" variant="bordered">
-                Sign Out
-              </Button>
-            </form>
-          </NavbarItem>
+          <>
+            <NavbarItem>
+              <form action={actions.signOut}>
+                <Avatar src={session.data.user?.image ?? ""} />
+              </form>
+            </NavbarItem>
+            <NavbarItem>
+              <form action={actions.signOut}>
+                <Button type="submit" color="secondary" variant="bordered">
+                  Sign Out
+                </Button>
+              </form>
+            </NavbarItem>
+          </>
         )}
       </NavbarContent>
     </NextUINavbar>
