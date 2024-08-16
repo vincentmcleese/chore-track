@@ -33,4 +33,7 @@ export const {
       return session;
     },
   },
+  pages: {
+    signOut: "/",
+  },
 });
