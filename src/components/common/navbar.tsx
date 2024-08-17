@@ -1,6 +1,3 @@
-"use client";
-
-import { useSession } from "next-auth/react";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -17,10 +14,10 @@ import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import { Logo } from "@/components/common/icons";
 import * as actions from "@/actions";
+import { auth } from "@/auth";
 
-export const Navbar = () => {
-  const session = useSession();
-  console.log(session.data?.user);
+export async function Navbar(): Promise<JSX.Element> {
+  const session = await auth();
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -40,7 +37,7 @@ export const Navbar = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        {!session.data?.user ? (
+        {!session?.user ? (
           <NavbarItem>
             <form action={actions.signIn}>
               <Button type="submit" color="secondary" variant="solid">
@@ -52,7 +49,7 @@ export const Navbar = () => {
           <>
             <NavbarItem>
               <form action={actions.signOut}>
-                <Avatar src={session.data.user?.image ?? ""} />
+                <Avatar src={session.user?.image ?? ""} />
               </form>
             </NavbarItem>
             <NavbarItem>
@@ -67,4 +64,4 @@ export const Navbar = () => {
       </NavbarContent>
     </NextUINavbar>
   );
-};
+}
