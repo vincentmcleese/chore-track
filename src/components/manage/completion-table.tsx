@@ -31,7 +31,7 @@ const CompletionTable: React.FC<CompletionTableProps> = ({ completions }) => {
         <TableColumn>Completed At</TableColumn>
       </TableHeader>
       <TableBody>
-        {completions?.map((completion) => (
+        {(completions ?? []).map((completion) => (
           <TableRow key={completion.id}>
             <TableCell>{completion.id}</TableCell>
             <TableCell>{completion.choreId}</TableCell>
