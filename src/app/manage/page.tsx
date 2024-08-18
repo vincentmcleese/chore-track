@@ -1,12 +1,3 @@
-import {
-  Avatar,
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-} from "@nextui-org/react";
 import { title, subtitle } from "@/components/primitives";
 import { db } from "@/db";
 import ManageTable from "@/components/manage/manage-table";
