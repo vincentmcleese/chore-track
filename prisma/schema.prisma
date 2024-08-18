@@ -60,7 +60,6 @@ model Chore {
   type        String // Could specify the type of chore, e.g., "cleaning", "maintenance"
   recurrence  recurrenceEnum
   interval    Int
-  startDate   DateTime
   creatorId   String
   assigneeId  String?
   creator     User              @relation("ChoreCreator", fields: [creatorId], references: [id])
@@ -78,9 +77,9 @@ model ChoreCompletion {
 }
 
 enum recurrenceEnum {
-  WEEKLY
-  BIWEEKLY
-  MONTHLY
-  QUARTERLY
-  YEARLY
+  weekly
+  biweekly
+  monthly
+  quarterly
+  yearly
 }

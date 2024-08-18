@@ -1,16 +1,26 @@
 "use server";
 
-const chores = require("@/db/chores.json");
-
-import { Card, CardHeader, CardBody, Image, user } from "@nextui-org/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Button,
+  Image,
+  user,
+  Avatar,
+} from "@nextui-org/react";
 import { title, subtitle } from "@/components/primitives";
+import ChoreCard from "@/components/home/chore-card";
 import { auth } from "@/auth";
 import { db } from "@/db";
+import * as actions from "@/actions";
 
 export default async function Home() {
   const session = await auth();
-  const DBchores = await db.chore.findMany();
-  console.log(DBchores);
+  const chores = await db.chore.findMany();
+  const ChoreCompletion = await db.choreCompletion.findMany();
+
   if (session?.user) {
     return (
       <div className="w-full px-4 sm:px-8 md:px-16 lg:px-24">
@@ -18,23 +28,11 @@ export default async function Home() {
         <h3 className={subtitle()}>Keep Nigellestraat 12 clean and tidy. </h3>
         <div className=" flex flex-wrap items-center justify-center">
           {chores.map((chore: any) => (
-            <div className="p-2" key={chore.key}>
-              <Card className="max-w-[400px]">
-                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                  <p className="text-tiny uppercase font-bold">{chore.owner}</p>
-                  <small className="text-default-500">{chore.cadence}</small>
-                  <h4 className="font-bold text-large">{chore.title}</h4>
-                </CardHeader>
-                <CardBody className="overflow-visible py-2">
-                  <Image
-                    alt="Card background"
-                    className="object-cover rounded-xl"
-                    src="https://nextui.org/images/hero-card-complete.jpeg"
-                    width={270}
-                  />
-                </CardBody>
-              </Card>
-            </div>
+            <ChoreCard
+              key={chore.id}
+              chore={chore}
+              userAvatar={session.user?.image ?? ""}
+            />
           ))}
         </div>
       </div>

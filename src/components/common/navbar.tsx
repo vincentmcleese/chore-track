@@ -9,8 +9,6 @@ import {
   Button,
   Avatar,
 } from "@nextui-org/react";
-import { Link } from "@nextui-org/link";
-import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import { Logo } from "@/components/common/icons";
 import * as actions from "@/actions";
