@@ -67,8 +67,10 @@ export default async function Home() {
   if (session?.user) {
     return (
       <div className="w-full px-4 sm:px-8 md:px-16 lg:px-24">
-        <h1 className={title({ color: "violet" })}>Chore-track</h1> <br />
-        <h3 className={subtitle()}>Keep Nigellestraat 12 clean and tidy. </h3>
+        <h1 className={title({ color: "violet" })}>Chore Dashboard</h1> <br />
+        <h3 className={subtitle()}>
+          Click on a chore to log a new completion.
+        </h3>
         <div className=" flex flex-wrap items-center justify-center">
           {chores.map((chore: any) => (
             <ChoreCard
@@ -82,8 +84,20 @@ export default async function Home() {
     );
   } else {
     return (
-      <div>
-        <h1>Login to begin</h1>
+      <div className="relative">
+        <video
+          src="./background.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover opacity-20"
+        >
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className={title({ color: "violet" })}>Chore Tracker</h1>
+        </div>
       </div>
     );
   }

@@ -1,7 +1,5 @@
 import { title, subtitle } from "@/components/primitives";
 import { db } from "@/db";
-import ManageTable from "@/components/manage/manage-table";
-import { type NextRequest } from "next/server";
 import CompletionTable from "@/components/manage/completion-table";
 
 export default async function ChorePage({
