@@ -9,6 +9,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Button,
 } from "@nextui-org/react";
 import Link from "next/link";
 
@@ -31,21 +32,20 @@ const ManageTable: React.FC<ManageTableProps> = ({ chores }) => {
   return (
     <Table aria-label="Example static collection table">
       <TableHeader>
-        <TableColumn>ID</TableColumn>
-        <TableColumn>Name</TableColumn>
-        <TableColumn>Description</TableColumn>
+        <TableColumn>Chore</TableColumn>
+        <TableColumn>recurrence</TableColumn>
+        <TableColumn>Details</TableColumn>
       </TableHeader>
       <TableBody>
         {chores.map((chore) => (
           <TableRow key={chore.id}>
+            <TableCell>{chore.title}</TableCell>
+            <TableCell>{chore.recurrence}</TableCell>
             <TableCell>
-              {" "}
               <Link href={`/manage/${chore.id}`} key={chore.id}>
-                {chore.id}
+                <Button> See Details </Button>
               </Link>
             </TableCell>
-            <TableCell>{chore.title}</TableCell>
-            <TableCell>{chore.description}</TableCell>
           </TableRow>
         ))}
       </TableBody>

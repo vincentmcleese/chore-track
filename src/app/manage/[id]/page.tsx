@@ -9,19 +9,31 @@ export default async function ChorePage({
 }: {
   params: { id: string };
 }) {
-  // Fetch the chore with the given id and include completions
+  // Fetch the chore with the given id and include completions and include the user details for completions userid
   const chore = await db.chore.findUnique({
     where: { id: params.id },
-    include: {
+    select: {
+      title: true,
+      description: true,
       completions: {
-        orderBy: { completedAt: "desc" },
+        select: {
+          id: true,
+          completedAt: true,
+          statusAtCompletion: true,
+          user: {
+            select: {
+              name: true,
+            },
+          },
+        },
       },
     },
   });
-
+  console.log(chore);
   return (
-    <div>
-      Chore Id: {params.id}
+    <div className="w-full px-4 sm:px-8 md:px-16 lg:px-24">
+      <h1 className={title({ color: "violet" })}>{chore?.title}</h1> <br />
+      <h3 className={subtitle()}>{chore?.description}</h3> <br />
       <CompletionTable completions={chore?.completions} />
     </div>
   );

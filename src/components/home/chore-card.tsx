@@ -2,6 +2,7 @@
 
 import React from "react";
 import * as actions from "@/actions";
+import confetti from "canvas-confetti";
 import {
   Card,
   CardHeader,
@@ -40,18 +41,29 @@ const returnColor = (status?: string) => {
 
 export default function ChoreCard({ chore, userAvatar }: ChoreCardProps) {
   // Define the press event handler
-  const handlePress = (choreId: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    console.log(`Chore ID: ${choreId}`);
-    try {
-      actions.createCompletion(choreId);
-      console.log("Chore completed");
-      toast.success(`Chore marked complete!`);
-    } catch (error) {
-      console.error("Error completing chore:", error);
-      toast.error(`Failed to complete chore ${choreId}.`);
-    }
+
+  //confetti not working??
+  const handleConfetti = () => {
+    confetti({
+      particleCount: 200,
+      spread: 160,
+    });
   };
+
+  const handlePress =
+    (choreId: string, choreStatus?: string) => (e: React.MouseEvent) => {
+      e.preventDefault();
+      console.log(`Chore ID: ${choreId}`);
+      try {
+        actions.createCompletion(choreId, choreStatus ?? "");
+        console.log("Chore completed");
+        handleConfetti;
+        toast.success(`Chore marked complete!`);
+      } catch (error) {
+        console.error("Error completing chore:", error);
+        toast.error(`Failed to complete chore ${choreId}.`);
+      }
+    };
 
   //return danger for overdue and success for current
   const returnColor = (status: string = "") => {
@@ -67,7 +79,7 @@ export default function ChoreCard({ chore, userAvatar }: ChoreCardProps) {
       className="p-2"
       style={{ cursor: "pointer" }}
       key={chore.id}
-      onClick={handlePress(chore.id)}
+      onClick={handlePress(chore.id, chore.status)}
     >
       <Card
         isFooterBlurred
