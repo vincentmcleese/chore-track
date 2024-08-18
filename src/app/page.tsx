@@ -95,6 +95,7 @@ export default async function Home() {
         >
           Your browser does not support the video tag.
         </video>
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white pointer-events-none"></div>{" "}
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className={title({ color: "violet" })}>Chore Tracker</h1>
         </div>

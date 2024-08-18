@@ -8,14 +8,33 @@ import {
   NavbarMenuItem,
   Button,
   Avatar,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
 } from "@nextui-org/react";
 import NextLink from "next/link";
 import { Logo } from "@/components/common/icons";
 import { auth } from "@/auth";
 import * as actions from "@/actions";
+import { Link } from "react-router-dom";
 
 export async function Navbar(): Promise<JSX.Element> {
   const session = await auth();
+  const content = (
+    <PopoverContent>
+      <NextLink href="/manage">
+        <Button type="submit" color="secondary" variant="light">
+          Chore data
+        </Button>
+      </NextLink>
+
+      <form action={actions.signOut}>
+        <Button type="submit" color="default" variant="light">
+          Sign Out
+        </Button>
+      </form>
+    </PopoverContent>
+  );
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -25,14 +44,14 @@ export async function Navbar(): Promise<JSX.Element> {
             Nigellestraat12
           </NextLink>
         </NavbarBrand>
-        <NavbarItem>
+        {/* <NavbarItem>
           <NextLink className="" color="foreground" href="/manage">
             manage
           </NextLink>
-        </NavbarItem>
+        </NavbarItem> */}
       </NavbarContent>
       <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
+        className="sm:flex basis-1/5 sm:basis-full overflow-visible"
         justify="end"
       >
         {!session?.user ? (
@@ -44,20 +63,14 @@ export async function Navbar(): Promise<JSX.Element> {
             </form>
           </NavbarItem>
         ) : (
-          <>
-            <NavbarItem>
-              <form action={actions.signOut}>
+          <NavbarItem>
+            <Popover placement="bottom-end" color="default">
+              <PopoverTrigger>
                 <Avatar src={session.user?.image ?? ""} />
-              </form>
-            </NavbarItem>
-            <NavbarItem>
-              <form action={actions.signOut}>
-                <Button type="submit" color="secondary" variant="bordered">
-                  Sign Out
-                </Button>
-              </form>
-            </NavbarItem>
-          </>
+              </PopoverTrigger>
+              {content}
+            </Popover>
+          </NavbarItem>
         )}
       </NavbarContent>
     </NextUINavbar>

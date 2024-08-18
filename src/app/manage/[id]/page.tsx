@@ -30,7 +30,6 @@ export default async function ChorePage({
       },
     },
   });
-  console.log(chore);
   return (
     <div className="w-full px-4 sm:px-8 md:px-16 lg:px-24">
       <h1 className={title({ color: "violet" })}>{chore?.title}</h1> <br />
