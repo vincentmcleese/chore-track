@@ -12,10 +12,7 @@ import {
 
 // Define the User type
 type User = {
-  id: string;
   name: string | null;
-  email: string | null;
-  emailVerified: Date | null;
   image: string | null;
 };
 
@@ -24,14 +21,14 @@ type Completion = {
   id: string;
   choreId: string;
   userId: string;
-  statusAtCompletion: string;
+  statusAtCompletion: string | null;
   completedAt: Date;
   user: User;
 };
 
 // Define the props for CompletionTable
 type CompletionTableProps = {
-  completions: Completion[];
+  completions: Completion[] | null;
 };
 
 // Update the CompletionTable component to use the new props
@@ -44,15 +41,17 @@ const CompletionTable: React.FC<CompletionTableProps> = ({ completions }) => {
         <TableColumn>Status at completion</TableColumn>
       </TableHeader>
       <TableBody>
-        {completions.map((completion) => (
-          <TableRow key={completion.id}>
-            <TableCell>{completion.user.name}</TableCell>
-            <TableCell suppressHydrationWarning>
-              {completion.completedAt.toLocaleDateString()}
-            </TableCell>
-            <TableCell>{completion.statusAtCompletion}</TableCell>
-          </TableRow>
-        ))}
+        {completions
+          ? completions.map((completion) => (
+              <TableRow key={completion.id}>
+                <TableCell>{completion.user.name}</TableCell>
+                <TableCell suppressHydrationWarning>
+                  {completion.completedAt.toLocaleDateString()}
+                </TableCell>
+                <TableCell>{completion.statusAtCompletion}</TableCell>
+              </TableRow>
+            ))
+          : []}
       </TableBody>
     </Table>
   );

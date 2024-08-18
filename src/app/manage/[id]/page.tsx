@@ -18,11 +18,14 @@ export default async function ChorePage({
       completions: {
         select: {
           id: true,
+          choreId: true,
+          userId: true,
           completedAt: true,
           statusAtCompletion: true,
           user: {
             select: {
               name: true,
+              image: true,
             },
           },
         },
@@ -34,7 +37,7 @@ export default async function ChorePage({
     <div className="w-full px-4 sm:px-8 md:px-16 lg:px-24">
       <h1 className={title({ color: "violet" })}>{chore?.title}</h1> <br />
       <h3 className={subtitle()}>{chore?.description}</h3> <br />
-      <CompletionTable completions={chore?.completions} />
+      <CompletionTable completions={chore?.completions ?? null} />
     </div>
   );
 }
