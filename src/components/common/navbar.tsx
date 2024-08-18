@@ -11,8 +11,8 @@ import {
 } from "@nextui-org/react";
 import NextLink from "next/link";
 import { Logo } from "@/components/common/icons";
-import * as actions from "@/actions";
 import { auth } from "@/auth";
+import * as actions from "@/actions";
 
 export async function Navbar(): Promise<JSX.Element> {
   const session = await auth();

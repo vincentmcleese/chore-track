@@ -4,18 +4,16 @@ import type { ChoreCompletion } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { db } from "@/db";
 import { cn } from "tailwind-variants";
+import { auth } from "@/auth";
 
-export async function createCompletion(userId: any, formData: any) {
-  console.log(userId);
-  const choreId = formData.get("choreId");
-  console.log(choreId);
-  console.log("Ok here we go");
-
+export async function createCompletion(choreId: string) {
+  const session = await auth();
+  const userId = session?.user?.id;
   let completion: ChoreCompletion;
   try {
     completion = await db.choreCompletion.create({
       data: {
-        userId: userId,
+        userId: userId || "",
         choreId: choreId,
         completedAt: new Date(),
       },
