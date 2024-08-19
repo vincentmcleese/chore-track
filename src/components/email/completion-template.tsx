@@ -15,7 +15,7 @@ export const CompletionTemplate: React.FC<
       Love, Nimbus.
     </p>
     <Image
-      src="https://nigellestraat12.com/img/nimbus.jpg"
+      src="/img/nimbus.jpg"
       alt="nimbus"
       title="nimbus"
       width={300}
