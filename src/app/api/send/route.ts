@@ -18,11 +18,13 @@ export async function POST(request: Request) {
     });
 
     if (error) {
+      console.error("Error sending email:", error);
       return Response.json({ error }, { status: 500 });
     }
 
     return Response.json({ data });
   } catch (error) {
+    console.error("Error in POST request:", error);
     return Response.json({ error }, { status: 500 });
   }
 }
