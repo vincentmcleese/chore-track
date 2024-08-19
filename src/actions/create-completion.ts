@@ -6,7 +6,11 @@ import { db } from "@/db";
 import { cn } from "tailwind-variants";
 import { auth } from "@/auth";
 
-export async function createCompletion(choreId: string, choreStatus: string) {
+export async function createCompletion(
+  choreId: string,
+  choreTitle: string,
+  choreStatus: string
+) {
   const session = await auth();
   const userId = session?.user?.id;
   let completion: ChoreCompletion;
@@ -28,7 +32,8 @@ export async function createCompletion(choreId: string, choreStatus: string) {
       },
       body: JSON.stringify({
         email: session?.user?.email,
-        chore: choreStatus,
+        status: choreStatus,
+        title: choreTitle,
       }),
     });
 

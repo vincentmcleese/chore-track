@@ -9,6 +9,7 @@ import {
   Image,
   user,
   Avatar,
+  Divider,
 } from "@nextui-org/react";
 import { title, subtitle } from "@/components/primitives";
 import ChoreCard from "@/components/home/chore-card";
@@ -71,6 +72,7 @@ export default async function Home() {
         <h3 className={subtitle()}>
           Click on a chore to log a new completion.
         </h3>
+        <Divider className="my-4" />
         <div className=" flex flex-wrap items-center justify-center">
           {chores.map((chore: any) => (
             <ChoreCard

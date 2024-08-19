@@ -40,9 +40,6 @@ const returnColor = (status?: string) => {
 };
 
 export default function ChoreCard({ chore, userAvatar }: ChoreCardProps) {
-  // Define the press event handler
-
-  //confetti not working??
   const handleConfetti = () => {
     confetti({
       particleCount: 200,
@@ -51,14 +48,15 @@ export default function ChoreCard({ chore, userAvatar }: ChoreCardProps) {
   };
 
   const handlePress =
-    (choreId: string, choreStatus?: string) => (e: React.MouseEvent) => {
+    (choreId: string, choreTitle: string, choreStatus?: string) =>
+    (e: React.MouseEvent) => {
       e.preventDefault();
       console.log(`Chore ID: ${choreId}`);
       try {
-        actions.createCompletion(choreId, choreStatus ?? "");
+        actions.createCompletion(choreId, choreTitle, choreStatus ?? "");
         console.log("Chore completed");
-        handleConfetti;
         toast.success(`Chore marked complete!`);
+        handleConfetti();
       } catch (error) {
         console.error("Error completing chore:", error);
         toast.error(`Failed to complete chore ${choreId}.`);
@@ -79,13 +77,12 @@ export default function ChoreCard({ chore, userAvatar }: ChoreCardProps) {
       className="p-2"
       style={{ cursor: "pointer" }}
       key={chore.id}
-      onClick={handlePress(chore.id, chore.status)}
+      onClick={handlePress(chore.id, chore.title, chore.status)}
     >
       <Card
         isFooterBlurred
         isHoverable={true}
         key={chore.id}
-        onClick={handlePress(chore.id)}
         className="max-w-[400px]"
       >
         <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">

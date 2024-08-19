@@ -26,9 +26,14 @@ export async function Navbar(): Promise<JSX.Element> {
           Manage
         </Button>
       </NextLink>
+      <NextLink href="/manage">
+        <Button type="submit" color="default" variant="light">
+          Performance
+        </Button>
+      </NextLink>
 
       <form action={actions.signOut}>
-        <Button type="submit" color="default" variant="light">
+        <Button type="submit" color="danger" variant="light">
           Sign Out
         </Button>
       </form>
