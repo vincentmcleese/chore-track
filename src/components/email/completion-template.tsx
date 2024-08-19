@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface CompletionTemplateProps {
   status: string;
   title: string;
@@ -12,11 +14,12 @@ export const CompletionTemplate: React.FC<
       {title} is marked complete. It was completed with a status of: {status}.
       Love, Nimbus.
     </p>
-    <img
+    <Image
       src="https://nigellestraat12.com/img/nimbus.jpg"
       alt="nimbus"
       title="nimbus"
-      style={{ display: "block", width: "200px", height: "600px" }}
+      width={300}
+      height={500}
     />
   </div>
 );
