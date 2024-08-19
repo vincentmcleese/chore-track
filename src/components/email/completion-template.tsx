@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Img } from "@react-email/components";
 
 interface CompletionTemplateProps {
   status: string;
@@ -14,12 +14,6 @@ export const CompletionTemplate: React.FC<
       {title} is marked complete. It was completed with a status of: {status}.
       Love, Nimbus.
     </p>
-    <Image
-      src="/img/nimbus.jpg"
-      alt="nimbus"
-      title="nimbus"
-      width={300}
-      height={500}
-    />
+    <Img src="img/nimbus.jpg" alt="nimbus" width="300" height="500" />;
   </div>
 );
