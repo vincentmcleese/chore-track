@@ -16,7 +16,6 @@ import NextLink from "next/link";
 import { Logo } from "@/components/common/icons";
 import { auth } from "@/auth";
 import * as actions from "@/actions";
-import { Link } from "react-router-dom";
 
 export async function Navbar(): Promise<JSX.Element> {
   const session = await auth();
