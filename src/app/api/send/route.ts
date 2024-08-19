@@ -11,7 +11,7 @@ export async function POST(request: Request) {
 
     // Send the email using the extracted parameters
     const { data, error } = await resend.emails.send({
-      from: "Nimbus <nimbus@nigellestraat12>",
+      from: "Nimbus <nimbus@nigellestraat12.com>",
       to: "mcleesevj@gmail.com",
       subject: "Chore Notification",
       react: EmailTemplate({ firstName: "John" }) as React.ReactElement,
