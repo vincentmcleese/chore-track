@@ -63,7 +63,7 @@ export async function Navbar(): Promise<JSX.Element> {
             </form>
           </NavbarItem>
         ) : (
-          <NavbarItem>
+          <NavbarItem style={{ cursor: "pointer" }}>
             <Popover placement="bottom-end" color="default">
               <PopoverTrigger>
                 <Avatar src={session.user?.image ?? ""} />

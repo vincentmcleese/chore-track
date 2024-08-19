@@ -20,6 +20,22 @@ export async function createCompletion(choreId: string, choreStatus: string) {
       },
     });
     console.log("completion created", completion);
+    // send email by calling the send email function from the api with json body of email and chore
+    const response = await fetch("http://localhost:3000/api/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: session?.user?.email,
+        chore: choreStatus,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to send email", response.statusText);
+      return;
+    }
   } catch (error) {
     console.error("error creating completion", error);
     return {
