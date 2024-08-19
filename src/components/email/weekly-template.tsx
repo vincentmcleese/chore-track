@@ -13,7 +13,7 @@ export const WeeklyTemplate: React.FC<Readonly<WeeklyTemplateProps>> = ({
 }) => (
   <div>
     <h1>This week {completions.length} were completed!</h1>
-    //map over completions and display them
+
     {completions.map((completion) => (
       <div key={completion.id}>
         <h2>Chore ID: {completion.choreId}</h2>
