@@ -20,9 +20,8 @@ export async function createCompletion(choreId: string, choreStatus: string) {
       },
     });
     console.log("completion created", completion);
-
     // send email by calling the send email function from the api with json body of email and chore
-    const response = await fetch("http://localhost:3000/api/send", {
+    const response = await fetch("https://nigellestraat12.com/api/send", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,13 +33,7 @@ export async function createCompletion(choreId: string, choreStatus: string) {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error(
-        "Failed to send email",
-        response.status,
-        response.statusText,
-        errorText
-      );
+      console.error("Failed to send email", response.statusText);
       return;
     }
   } catch (error) {
