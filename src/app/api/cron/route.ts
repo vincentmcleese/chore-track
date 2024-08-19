@@ -1,4 +1,4 @@
-import { EmailTemplate } from "@/components/email/template";
+import { WeeklyTemplate } from "@/components/email/weekly-template";
 import { Resend } from "resend";
 import * as React from "react";
 import { db } from "@/db";
@@ -6,10 +6,12 @@ import { db } from "@/db";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function GET(request: Request) {
-  // Get the title of max one chore in the database
-  const chore = await db.chore.findFirst({
-    select: {
-      title: true,
+  // Get an array of all the completions in the last 7 days
+  const completions = await db.choreCompletion.findMany({
+    where: {
+      completedAt: {
+        gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      },
     },
   });
 
@@ -21,10 +23,10 @@ export async function GET(request: Request) {
 
     // Send the email
     const { data, error } = await resend.emails.send({
-      from: "Nimbus <nimbus@nigellestraat12.com>",
+      from: "Dr. Stoffels <stoffels@nigellestraat12.com>",
       to: "mcleesevj@gmail.com",
-      subject: `Cronjob for ${chore?.title}`,
-      react: EmailTemplate({ firstName: "Vincent" }) as React.ReactElement,
+      subject: `Weekly chore roundup`,
+      react: WeeklyTemplate({ completions: completions }) as React.ReactElement,
     });
 
     if (error) {
