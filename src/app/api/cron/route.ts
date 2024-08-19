@@ -4,7 +4,7 @@ import * as React from "react";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(request: Request) {
+export async function GET(request: Request) {
   try {
     console.log("Received request:", {
       method: request.method,
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
     return Response.json({ data });
   } catch (error) {
-    console.error("Error in POST request:", error);
+    console.error("Error in GET request:", error);
     return Response.json({ error }, { status: 500 });
   }
 }
