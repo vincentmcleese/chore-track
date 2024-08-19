@@ -6,6 +6,11 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
+    console.log("Received request:", {
+      method: request.method,
+      url: request.url,
+    });
+
     // Send the email
     const { data, error } = await resend.emails.send({
       from: "Nimbus <nimbus@nigellestraat12.com>",

@@ -1,7 +1,7 @@
 {
     "crons": [
         {
-            "path": "https://nigellestraat12.com/api/cron",
+            "path": "/api/cron",
             "schedule": "0 5 * * *"
         }
     ]
