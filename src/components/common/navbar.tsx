@@ -23,7 +23,7 @@ export async function Navbar(): Promise<JSX.Element> {
     <PopoverContent>
       <NextLink href="/manage">
         <Button type="submit" color="secondary" variant="light">
-          Chore data
+          Manage
         </Button>
       </NextLink>
 

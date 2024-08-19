@@ -6,14 +6,11 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
-    // Parse the request body to extract email and chore
-    const { email, chore } = await request.json();
-
-    // Send the email using the extracted parameters
+    // Send the email
     const { data, error } = await resend.emails.send({
       from: "Nimbus <nimbus@nigellestraat12.com>",
       to: "mcleesevj@gmail.com",
-      subject: "Chore Completion Notification",
+      subject: "Cronjob",
       react: EmailTemplate({ firstName: "Vincent" }) as React.ReactElement,
     });
 
