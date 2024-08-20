@@ -13,6 +13,18 @@ export async function GET(request: Request) {
         gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
       },
     },
+    include: {
+      user: {
+        select: {
+          name: true,
+        },
+      },
+      chore: {
+        select: {
+          title: true,
+        },
+      },
+    },
   });
 
   try {
