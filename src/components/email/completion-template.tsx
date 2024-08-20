@@ -14,6 +14,12 @@ export const CompletionTemplate: React.FC<
       {title} is marked complete. It was completed with a status of: {status}.
       Love, Nimbus.
     </p>
-    <Img src="img/nimbus.jpg" alt="nimbus" width="300" height="500" />;
+    <Img
+      src="http://drive.google.com/uc?export=view&id=1adbooetKdiDc2lSpv2rIeRJAo-mcnjv4"
+      alt="nimbus"
+      width="300"
+      height="500"
+    />
+    ;
   </div>
 );
