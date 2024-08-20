@@ -26,6 +26,12 @@ export default async function Home() {
         orderBy: { completedAt: "desc" },
         take: 1,
       },
+      assignee: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
     },
   });
 
@@ -78,7 +84,7 @@ export default async function Home() {
             <ChoreCard
               key={chore.id}
               chore={chore}
-              userAvatar={session.user?.image ?? ""}
+              userAvatar={chore.assignee.image}
             />
           ))}
         </div>
