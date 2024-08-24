@@ -60,7 +60,7 @@ export async function GET(request: Request) {
       from: "Dr. Stoffels <stoffels@nigellestraat12.com>",
       to: "mcleesevj@gmail.com",
       subject: `Weekly chore roundup`,
-      react: WeeklyTemplate({ completions: completions }) as React.ReactElement,
+      react: WeeklyTemplate({ chores: sortedChores }) as React.ReactElement,
     });
 
     if (error) {
