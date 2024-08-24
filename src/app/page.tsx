@@ -1,6 +1,11 @@
 "use server";
 
 import {
+  calculateDaysSinceCompletion,
+  checkIfOverdue,
+  sortChores,
+} from "@/services/choreUtils";
+import {
   Card,
   CardHeader,
   CardBody,
@@ -13,6 +18,7 @@ import {
 } from "@nextui-org/react";
 import { title, subtitle } from "@/components/primitives";
 import ChoreCard from "@/components/home/chore-card";
+import VideoBackground from "@/components/home/video-background";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import * as actions from "@/actions";
@@ -35,41 +41,18 @@ export default async function Home() {
     },
   });
 
-  //add "days since last completion" to each chore
+  // Add "days since last completion" to each chore
   chores.forEach((chore: any) => {
-    if (chore.completions.length > 0) {
-      const lastCompletion = chore.completions[0];
-      const daysSinceCompletion = Math.floor(
-        (Date.now() - lastCompletion.completedAt.getTime()) / 86400000
-      );
-      chore.daysSinceCompletion = daysSinceCompletion;
-    } else {
-      chore.daysSinceCompletion = null;
-    }
+    chore.daysSinceCompletion = calculateDaysSinceCompletion(chore.completions);
   });
 
-  //check if days since last completion is greater than interval (weeks, so change that to days). add a status attribute to chore and set it to "overdue" if true if true.
+  // Check if days since last completion is greater than interval and add a status attribute
   chores.forEach((chore: any) => {
-    if (
-      chore.daysSinceCompletion &&
-      chore.daysSinceCompletion > chore.interval * 7
-    ) {
-      chore.status = "overdue";
-    } else {
-      chore.status = "current";
-    }
+    chore.status = checkIfOverdue(chore.daysSinceCompletion, chore.interval);
   });
 
-  //sort chores with overdue first (sorted by most overdue), then current (sorted by least overdue)
-  chores.sort((a: any, b: any) => {
-    if (a.status === "overdue" && b.status === "current") {
-      return -1;
-    } else if (a.status === "current" && b.status === "overdue") {
-      return 1;
-    } else {
-      return a.daysSinceCompletion - b.daysSinceCompletion;
-    }
-  });
+  // Sort chores with overdue first (sorted by most overdue), then current (sorted by least overdue)
+  const sortedChores = sortChores(chores);
 
   if (session?.user) {
     return (
@@ -93,17 +76,7 @@ export default async function Home() {
   } else {
     return (
       <div className="relative">
-        <video
-          src="./background.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover opacity-20"
-        >
-          Your browser does not support the video tag.
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white pointer-events-none"></div>{" "}
+        <VideoBackground />
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className={title({ color: "violet" })}>Chore Tracker</h1>
         </div>

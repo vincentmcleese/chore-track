@@ -1,34 +1,37 @@
 import { Img } from "@react-email/components";
 
-interface WeeklyTemplateProps {
-  completions: ({
-    chore: {
-      title: string;
-    };
-    user: {
-      name: string | null;
-    };
-  } & {
-    id: string;
-    choreId: string;
-    userId: string;
+// Define the interface for a single chore
+interface Chore {
+  id: string;
+  title: string;
+  daysSinceCompletion: number | null;
+  status: string;
+  assignee: {
+    name: string;
+    image: string;
+  };
+  completions: {
     completedAt: Date;
-    statusAtCompletion: string | null;
-  })[];
+  }[];
+}
+
+// Define the interface for the props of the WeeklyTemplate component
+interface WeeklyTemplateProps {
+  chores: Chore[];
 }
 
 export const WeeklyTemplate: React.FC<Readonly<WeeklyTemplateProps>> = ({
-  completions,
+  chores,
 }) => (
   <div>
-    <h1>This week {completions.length} were completed!</h1>
+    <h1>Here is the weekly roundup!</h1>
     <p>Here is the week in review:</p>
-    {completions.map((completion) => (
-      <div key={completion.id}>
-        <p>Chore: {completion.chore.title}</p>
-        <p>Completed by: {completion.user.name}</p>
-        <p>Completed at: {completion.completedAt.toDateString()}</p>
-        <p>Status at completion: {completion.statusAtCompletion}</p>
+    {chores.map((chore) => (
+      <div key={chore.id}>
+        <p>Chore: {chore.title}</p>
+        <p>Status: {chore.status}</p>
+        <p>Completed at: {chore.completions[0].completedAt.toDateString()}</p>
+        <p>Owner: {chore.assignee.name}</p>
       </div>
     ))}
     <Img
