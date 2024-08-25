@@ -1,5 +1,5 @@
 import { Img } from "@react-email/components";
-import { Button, Html } from "@react-email/components";
+import { Button, Html, Head, Container } from "@react-email/components";
 
 // Define the interface for a single chore
 interface Chore {
@@ -25,13 +25,22 @@ export const WeeklyTemplate: React.FC<Readonly<WeeklyTemplateProps>> = ({
   chores,
 }) => (
   <Html>
-    <Button
-      href="https://example.com"
-      style={{ background: "#000", color: "#fff", padding: "12px 20px" }}
-    >
-      Click me
-    </Button>
-    {/* <div>
+    <Head>
+      <title>My email title</title>
+    </Head>
+    <Container>
+      <Button
+        href="https://example.com"
+        style={{ background: "#000", color: "#fff", padding: "12px 20px" }}
+      >
+        Click me
+      </Button>
+    </Container>
+  </Html>
+);
+
+{
+  /* <div>
       <h1>Here is the weekly roundup!</h1>
       <p>Here is the week in review:</p>
       {chores.map((chore) => (
@@ -52,6 +61,5 @@ export const WeeklyTemplate: React.FC<Readonly<WeeklyTemplateProps>> = ({
       <p style={{ fontWeight: "bold", fontSize: "1.2em", marginTop: "20px" }}>
         Love, Dr. Stoffels.
       </p>
-    </div> */}
-  </Html>
-);
+    </div> */
+}
