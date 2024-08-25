@@ -22,7 +22,7 @@ interface Chore {
   id: string;
   title: string;
   daysSinceCompletion: number | null;
-  nextDue: Date | null;
+  nextDue: number | null;
   status: string;
   assignee: {
     name: string;
