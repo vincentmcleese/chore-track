@@ -62,7 +62,7 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
             The Dr. Stoffel&#39;s Pre-weekend reminder
           </Heading>
           <Text className="text-black text-[14px] leading-[24px]">
-            Happy Friday! While i'm munching on some andijvie, it looks like
+            Happy Friday! While i&#39;m munching on some andijvie, it looks like
             you&#39;re going to be busy because you have X chores to do this
             weeked.
           </Text>
