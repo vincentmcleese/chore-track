@@ -46,9 +46,9 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
   //filter chores array for chores with status of overdue
   const overdueChores = chores.filter((chore) => chore.status === "overdue");
 
-  //filter chores array for chores with nextdue less than 8
+  //filter chores array for chores with nextdue less than 8, but not negative
   const dueSoonChores = chores.filter(
-    (chore) => chore.nextDue && chore.nextDue < 8
+    (chore) => chore.nextDue && (chore.nextDue < 8 || chore.nextDue < 0)
   );
 
   return (
@@ -74,26 +74,37 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
               Happy Friday! While i&#39;m munching on some andijvie, it looks
               like you&#39;re going to be busy because you have{" "}
               {dueSoonChores.length} chores to do in the next 7 days.
+              {overdueChores.length > 0 && (
+                <>
+                  {" "}
+                  You also have {overdueChores.length} overdue chores. Maybe
+                  start with those?
+                </>
+              )}
             </Text>
+            <Hr className="m-[16px] border-t-2 border-[#cccccc]" />
 
             {overdueChores.length > 0 && (
               <Section>
-                <Heading className="text-red-600 text-[20px] font-normal text-center p-0 my-[20px] mx-0">
+                <Heading className=" text-[20px] font-normal text-center p-0 my-[20px] mx-0">
                   Overdue Chores
                 </Heading>
                 {overdueChores.map((chore) => (
-                  <Row key={chore.id}>
-                    <Column align="left">
-                      <Text className="text-black text-[14px] leading-[24px]">
-                        {chore.title}
-                      </Text>
-                    </Column>
-                    <Column align="center">
-                      <Text className="text-red-600 text-[14px] leading-[24px]">
-                        Overdue
-                      </Text>
-                    </Column>
-                  </Row>
+                  <>
+                    <Row key={chore.id}>
+                      <Column align="left">
+                        <Text className="text-black text-[14px] leading-[24px]">
+                          {chore.title}
+                        </Text>
+                      </Column>
+                      <Column align="right">
+                        <Text className=" text-[14px] leading-[24px]">
+                          Overdue
+                        </Text>
+                      </Column>
+                    </Row>
+                    <Hr className="m-[16px] border-[#cccccc]" />
+                  </>
                 ))}
               </Section>
             )}
@@ -103,17 +114,20 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
                 Upcoming Chores
               </Heading>
               {dueSoonChores.map((chore) => (
-                <Row key={chore.id}>
-                  <Column align="left">
-                    <Text className="text-black text-[14px] leading-[24px]">
-                      {chore.title}
-                    </Text>
-                  </Column>
+                <>
+                  <Row key={chore.id}>
+                    <Column align="left">
+                      <Text className="text-black text-[14px] leading-[24px]">
+                        {chore.title}
+                      </Text>
+                    </Column>
 
-                  <Column align="right">
-                    <Text>{chore.nextDue ?? "n.a"} day&#39;9s)</Text>
-                  </Column>
-                </Row>
+                    <Column align="right">
+                      <Text>{chore.nextDue ?? "n.a"} day&#39;s</Text>
+                    </Column>
+                  </Row>
+                  <Hr className="m-[16px] border-[#cccccc]" />
+                </>
               ))}
             </Section>
             <Section className="text-center mt-[32px] mb-[32px]">

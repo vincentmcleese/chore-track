@@ -62,29 +62,32 @@ export const WeeklyTemplate: React.FC<Readonly<WeeklyTemplateProps>> = ({
           </Text>
           <Section>
             {chores.map((chore) => (
-              <Row key={chore.id}>
-                <Column align="left">
-                  <Text className="text-black text-[14px] leading-[24px]">
-                    {chore.title}
-                  </Text>
-                </Column>
-                <Column align="center">
-                  <Text
-                    className={`${
-                      chore.status === "overdue"
-                        ? "text-red-600"
-                        : "text-green-600"
-                    } text-[14px] leading-[24px]`}
-                  >
-                    {chore.status}
-                  </Text>
-                </Column>
-                <Column align="right">
-                  <Text className="text-black text-[14px] leading-[24px]">
-                    {chore.assignee.name.split(" ")[0]}
-                  </Text>
-                </Column>
-              </Row>
+              <>
+                <Row key={chore.id}>
+                  <Column align="left">
+                    <Text className="text-black text-[14px] leading-[24px]">
+                      {chore.title}
+                    </Text>
+                  </Column>
+                  <Column align="center">
+                    <Text
+                      className={`${
+                        chore.status === "overdue"
+                          ? "text-red-600"
+                          : "text-green-600"
+                      } text-[14px] leading-[24px]`}
+                    >
+                      {chore.status}
+                    </Text>
+                  </Column>
+                  <Column align="right">
+                    <Text className="text-black text-[14px] leading-[24px]">
+                      {chore.assignee.name.split(" ")[0]}
+                    </Text>
+                  </Column>
+                </Row>
+                <Hr className="m-[16px] border-t-2 border-[#cccccc]" />
+              </>
             ))}
           </Section>
           <Section className="text-center mt-[32px] mb-[32px]">
