@@ -54,13 +54,18 @@ export async function GET(request: Request) {
     chore.nextDue = differenceInDays;
   });
 
+  // Sort chores with overdue first (sorted by most overdue), then current (sorted by least overdue)
+  const sortedChores = sortChores(chores);
+
   //filter chores with assignee email equal to mcleesevj@gmail.com
-  const userChores = chores.filter(
+  const vincentChores = sortedChores.filter(
     (chore) => chore.assignee && chore.assignee.email === "mcleesevj@gmail.com"
   );
 
-  // Sort chores with overdue first (sorted by most overdue), then current (sorted by least overdue)
-  const sortedChores = sortChores(userChores);
+  //filter chores with assignee email equal to aomcleese@gmail.com
+  const andyChores = sortedChores.filter(
+    (chore) => chore.assignee && chore.assignee.email === "aomcleese@gmail.com"
+  );
 
   try {
     console.log("Received request:", {
@@ -68,25 +73,51 @@ export async function GET(request: Request) {
       url: request.url,
     });
 
-    // Send the email with updated chores
-    const { data, error } = await resend.emails.send({
+    // Define the props for the first email
+    const firstEmailProps = {
       from: "Dr. Stoffels <stoffels@nigellestraat12.com>",
       to: "mcleesevj@gmail.com",
-      subject: `Your upcoming chores`,
+      subject: `Vincent's upcoming chores`,
       react: ReminderTemplate({
-        chores: sortedChores,
+        chores: vincentChores,
         name: "Vincent",
       }) as React.ReactElement,
-    });
+    };
 
-    if (error) {
-      console.error("Error sending email:", error);
-      return Response.json({ error }, { status: 500 });
+    // Define the props for the second email
+    const secondEmailProps = {
+      from: "Dr. Stoffels <stoffels@nigellestraat12.com>",
+      to: "anotheremail@example.com",
+      subject: `Andy's upcoming chores`,
+      react: ReminderTemplate({
+        chores: andyChores,
+        name: "Andy",
+      }) as React.ReactElement,
+    };
+
+    // Send the first email
+    const { data: data1, error: error1 } = await resend.emails.send(
+      firstEmailProps
+    );
+
+    if (error1) {
+      console.error("Error sending first email:", error1);
+      return Response.json({ error: error1 }, { status: 500 });
     }
 
-    return Response.json({ data });
+    // Send the second email
+    const { data: data2, error: error2 } = await resend.emails.send(
+      secondEmailProps
+    );
+
+    if (error2) {
+      console.error("Error sending second email:", error2);
+      return Response.json({ error: error2 }, { status: 500 });
+    }
+
+    return Response.json({ data: [data1, data2] });
   } catch (error) {
-    console.error("Error in GET request:", error);
+    console.error("Unexpected error:", error);
     return Response.json({ error }, { status: 500 });
   }
 }

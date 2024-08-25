@@ -98,8 +98,8 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
                         </Text>
                       </Column>
                       <Column align="right">
-                        <Text className=" text-[14px] leading-[24px]">
-                          Overdue
+                        <Text className="text-red-600 text-[14px] leading-[24px]">
+                          Overdue by {Math.abs(chore.nextDue ?? 0)} days
                         </Text>
                       </Column>
                     </Row>
@@ -110,7 +110,7 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
             )}
 
             <Section>
-              <Heading className="text-red-600 text-[20px] font-normal text-center p-0 my-[20px] mx-0">
+              <Heading className=" text-[20px] font-normal text-center p-0 my-[20px] mx-0">
                 Upcoming Chores
               </Heading>
               {dueSoonChores.map((chore) => (
