@@ -39,12 +39,16 @@ export async function GET(request: Request) {
     chore.status = checkIfOverdue(chore.daysSinceCompletion, chore.interval);
   });
 
-  // add a next due date to each chore
+  // Add a next due date to each chore
   chores.forEach((chore: any) => {
-    chore.nextDueDate = new Date(
-      chore.completions[0].completedAt.getTime() +
-        chore.interval * 7 * 24 * 60 * 60 * 1000
-    );
+    if (chore.completions && chore.completions.length > 0) {
+      chore.nextDueDate = new Date(
+        chore.completions[0].completedAt.getTime() +
+          chore.interval * 7 * 24 * 60 * 60 * 1000
+      );
+    } else {
+      chore.nextDueDate = null; // or handle this case as needed
+    }
   });
 
   //filter chores with assignee email equal to mcleesevj@gmail.com
