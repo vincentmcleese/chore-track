@@ -48,7 +48,7 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
 
   //filter chores array for chores with nextdue less than 8, but not negative
   const dueSoonChores = chores.filter(
-    (chore) => chore.nextDue && (chore.nextDue < 8 || chore.nextDue < 0)
+    (chore) => chore.nextDue && chore.nextDue >= 0 && chore.nextDue < 8
   );
 
   return (

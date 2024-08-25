@@ -58,7 +58,7 @@ export async function GET(request: Request) {
     // Send the email
     const { data, error } = await resend.emails.send({
       from: "Dr. Stoffels <stoffels@nigellestraat12.com>",
-      to: "mcleesevj@gmail.com",
+      to: "mcleesevj@gmail.com, aomcleese@gmail.com",
       subject: `Weekly chore roundup`,
       react: WeeklyTemplate({ chores: sortedChores }) as React.ReactElement,
     });

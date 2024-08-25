@@ -3,7 +3,6 @@ import {
   checkIfOverdue,
   sortChores,
 } from "@/services/choreUtils";
-import { WeeklyTemplate } from "@/components/email/weekly-template";
 import { Resend } from "resend";
 import * as React from "react";
 import { db } from "@/db";
