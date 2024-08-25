@@ -47,7 +47,7 @@ export async function GET(request: Request) {
           chore.interval * 7 * 24 * 60 * 60 * 1000
       );
     } else {
-      chore.nextDueDate = null; // or handle this case as needed
+      chore.nextDueDate = null;
     }
   });
 
@@ -70,7 +70,10 @@ export async function GET(request: Request) {
       from: "Dr. Stoffels <stoffels@nigellestraat12.com>",
       to: "mcleesevj@gmail.com",
       subject: `Your upcoming chores`,
-      react: ReminderTemplate({ chores: sortedChores }) as React.ReactElement,
+      react: ReminderTemplate({
+        chores: sortedChores,
+        name: "Vincent",
+      }) as React.ReactElement,
     });
 
     if (error) {

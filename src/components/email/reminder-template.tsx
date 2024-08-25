@@ -36,6 +36,7 @@ interface Chore {
 // Define the interface for the props of the WeeklyTemplate component
 interface ReminderTemplateProps {
   chores: Chore[];
+  name: string;
 }
 
 export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
@@ -57,10 +58,11 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
             />
           </Section>
           <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
-            The Dr. Stoffel&#39;s Weekly Roundup
+            The Dr. Stoffel&#39;s Pre-weekend reminder
           </Heading>
           <Text className="text-black text-[14px] leading-[24px]">
-            Here is the status of chores this week:
+            Happy Friday! While i'm munching on some andijvie, it looks like
+            you're going to be busy because you have X chores to do this weeked.
           </Text>
           <Section>
             {chores.map((chore) => (
@@ -82,9 +84,7 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
                   </Text>
                 </Column>
                 <Column align="right">
-                  <Text className="text-black text-[14px] leading-[24px]">
-                    {chore.assignee?.name?.split(" ")[0]}
-                  </Text>
+                  <Text>{chore.nextDue.toDateString()}</Text>
                 </Column>
               </Row>
             ))}
