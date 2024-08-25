@@ -48,10 +48,10 @@ export const WeeklyTemplate: React.FC<Readonly<WeeklyTemplateProps>> = ({
           <Section className="mt-[32px]">
             <Img
               src="http://drive.google.com/uc?export=view&id=1YdxGYSo3yLG4nClW0BjP1jrQ1iXn1XBx"
-              width="40"
-              height="37"
+              width="64"
+              height="64"
               alt="Vercel"
-              className="my-0 mx-auto"
+              className="my-0 mx-auto rounded-full"
             />
           </Section>
           <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
@@ -81,7 +81,7 @@ export const WeeklyTemplate: React.FC<Readonly<WeeklyTemplateProps>> = ({
                 </Column>
                 <Column align="right">
                   <Text className="text-black text-[14px] leading-[24px]">
-                    {chore.assignee.name}
+                    {chore.assignee.name.split(" ")[0]}
                   </Text>
                 </Column>
               </Row>
