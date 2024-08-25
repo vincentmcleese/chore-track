@@ -87,7 +87,7 @@ export async function GET(request: Request) {
     // Define the props for the second email
     const secondEmailProps = {
       from: "Dr. Stoffels <stoffels@nigellestraat12.com>",
-      to: "anotheremail@example.com",
+      to: "aomcleese@gmail.com",
       subject: `Andy's upcoming chores`,
       react: ReminderTemplate({
         chores: andyChores,
