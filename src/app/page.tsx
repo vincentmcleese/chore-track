@@ -5,26 +5,16 @@ import {
   checkIfOverdue,
   sortChores,
 } from "@/services/choreUtils";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Button,
-  Image,
-  user,
-  Avatar,
-  Divider,
-} from "@nextui-org/react";
-import { title, subtitle } from "@/components/primitives";
-import ChoreCard from "@/components/home/chore-card";
-import VideoBackground from "@/components/home/video-background";
+
 import { auth } from "@/auth";
 import { db } from "@/db";
-import * as actions from "@/actions";
+
+import ChoreDashboard from "@/components/home/ChoreDashboard";
 
 export default async function Home() {
   const session = await auth();
+  const userEmail = session?.user?.email;
+
   //get a list of chores and include the last chorecompletion for each chore
   const chores = await db.chore.findMany({
     include: {
@@ -36,6 +26,7 @@ export default async function Home() {
         select: {
           name: true,
           image: true,
+          email: true,
         },
       },
     },
@@ -54,33 +45,16 @@ export default async function Home() {
   // Sort chores with overdue first (sorted by most overdue), then current (sorted by least overdue)
   const sortedChores = sortChores(chores);
 
-  if (session?.user) {
-    return (
-      <div className="w-full px-4 sm:px-8 md:px-16 lg:px-24">
-        <h1 className={title({ color: "violet" })}>Chore Dashboard</h1> <br />
-        <h3 className={subtitle()}>
-          Click on a chore to log a new completion.
-        </h3>
-        <Divider className="my-4" />
-        <div className=" flex flex-wrap items-center justify-center">
-          {chores.map((chore: any) => (
-            <ChoreCard
-              key={chore.id}
-              chore={chore}
-              userAvatar={chore.assignee.image}
-            />
-          ))}
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="relative">
-        <VideoBackground />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className={title({ color: "violet" })}>Chore Tracker</h1>
-        </div>
-      </div>
-    );
-  }
+  // Filter chores based on the current user
+  const userChores = sortedChores.filter(
+    (chore) => chore.assignee.email === userEmail
+  );
+
+  return (
+    <ChoreDashboard
+      chores={sortedChores}
+      userChores={userChores}
+      session={session}
+    />
+  );
 }
