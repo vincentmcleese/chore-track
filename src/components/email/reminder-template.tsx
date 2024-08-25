@@ -41,10 +41,11 @@ interface ReminderTemplateProps {
 
 export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
   chores,
+  name,
 }) => (
   <Html>
     <Head />
-    <Preview>Your upcoming chores</Preview>
+    <Preview>{name}, Your upcoming chores</Preview>
     <Tailwind>
       <Body className="bg-white my-auto mx-auto font-sans px-2">
         <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
@@ -62,7 +63,8 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
           </Heading>
           <Text className="text-black text-[14px] leading-[24px]">
             Happy Friday! While i'm munching on some andijvie, it looks like
-            you're going to be busy because you have X chores to do this weeked.
+            you&#39;re going to be busy because you have X chores to do this
+            weeked.
           </Text>
           <Section>
             {chores.map((chore) => (
