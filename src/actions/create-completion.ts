@@ -32,6 +32,7 @@ export async function createCompletion(
       },
       body: JSON.stringify({
         email: session?.user?.email,
+        name: session?.user?.name,
         status: choreStatus,
         title: choreTitle,
       }),
