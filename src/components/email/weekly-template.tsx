@@ -1,5 +1,20 @@
-import { Img } from "@react-email/components";
-import { Button, Html, Head, Container } from "@react-email/components";
+import {
+  Body,
+  Button,
+  Container,
+  Column,
+  Head,
+  Heading,
+  Hr,
+  Html,
+  Img,
+  Link,
+  Preview,
+  Row,
+  Section,
+  Text,
+  Tailwind,
+} from "@react-email/components";
 
 // Define the interface for a single chore
 interface Chore {
@@ -25,17 +40,78 @@ export const WeeklyTemplate: React.FC<Readonly<WeeklyTemplateProps>> = ({
   chores,
 }) => (
   <Html>
-    <Head>
-      <title>My email title</title>
-    </Head>
-    <Container>
-      <Button
-        href="https://example.com"
-        style={{ background: "#000", color: "#fff", padding: "12px 20px" }}
-      >
-        Click me
-      </Button>
-    </Container>
+    <Head />
+    <Preview>The weekly roundup</Preview>
+    <Tailwind>
+      <Body className="bg-white my-auto mx-auto font-sans px-2">
+        <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
+          <Section className="mt-[32px]">
+            <Img
+              src="http://drive.google.com/uc?export=view&id=1YdxGYSo3yLG4nClW0BjP1jrQ1iXn1XBx"
+              width="40"
+              height="37"
+              alt="Vercel"
+              className="my-0 mx-auto"
+            />
+          </Section>
+          <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
+            The Dr. Stoffel&#39;s Weekly Roundup
+          </Heading>
+          <Text className="text-black text-[14px] leading-[24px]">
+            Here is the status of chores this week:
+          </Text>
+          <Section>
+            {chores.map((chore) => (
+              <Row key={chore.id}>
+                <Column align="left">
+                  <Text className="text-black text-[14px] leading-[24px]">
+                    {chore.title}
+                  </Text>
+                </Column>
+                <Column align="center">
+                  <Text
+                    className={`${
+                      chore.status === "overdue"
+                        ? "text-red-600"
+                        : "text-green-600"
+                    } text-[14px] leading-[24px]`}
+                  >
+                    {chore.status}
+                  </Text>
+                </Column>
+                <Column align="right">
+                  <Text className="text-black text-[14px] leading-[24px]">
+                    {chore.assignee.name}
+                  </Text>
+                </Column>
+              </Row>
+            ))}
+          </Section>
+          <Section className="text-center mt-[32px] mb-[32px]">
+            <Button
+              className="bg-[#000000] rounded text-white text-[12px] font-semibold no-underline text-center px-5 py-3"
+              href="https://nigellestraat12.com/"
+            >
+              Go to the app
+            </Button>
+          </Section>
+          <Text className="text-black text-[14px] leading-[24px]">
+            or copy and paste this URL into your browser:{" "}
+            <Link
+              href="https://nigellestraat12.com/"
+              className="text-blue-600 no-underline"
+            >
+              https://nigellestraat12.com/
+            </Link>
+          </Text>
+          <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
+          <Text className="text-[#666666] text-[12px] leading-[24px]">
+            This weekly roundup is sent every monday morning. If you would like
+            to unsubscribe, too bad. You&#39;re stuck with me.
+          </Text>
+        </Container>
+      </Body>
+    </Tailwind>
   </Html>
 );
 
