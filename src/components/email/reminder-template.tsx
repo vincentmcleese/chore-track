@@ -86,7 +86,7 @@ export const ReminderTemplate: React.FC<Readonly<ReminderTemplateProps>> = ({
                   </Text>
                 </Column>
                 <Column align="right">
-                  <Text>{chore.nextDue?.toDateString() ?? "n.a"}</Text>
+                  <Text>{chore.nextDue ?? "n.a"}</Text>
                 </Column>
               </Row>
             ))}
