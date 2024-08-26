@@ -14,7 +14,6 @@ export async function GET(request: Request) {
   try {
     console.log("Received request:", {
       method: request.method,
-      url: request.url,
     });
 
     // Fetch chores from the request or database
