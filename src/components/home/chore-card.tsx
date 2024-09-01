@@ -32,9 +32,15 @@ interface ChoreCardProps {
   userAvatar?: string;
 }
 
-const returnColor = (status?: string) => {
+const returnColor = (status?: string, daysUntilDue?: number) => {
   if (status === "overdue") {
     return "danger";
+  } else if (
+    daysUntilDue !== undefined &&
+    daysUntilDue <= 3 &&
+    daysUntilDue >= 0
+  ) {
+    return "warning";
   } else {
     return "success";
   }
@@ -64,15 +70,6 @@ export default function ChoreCard({ chore, userAvatar }: ChoreCardProps) {
       }
     };
 
-  //return danger for overdue and success for current
-  const returnColor = (status: string = "") => {
-    if (status === "overdue") {
-      return "danger";
-    } else {
-      return "success";
-    }
-  };
-
   return (
     <div
       className="p-2"
@@ -99,9 +96,11 @@ export default function ChoreCard({ chore, userAvatar }: ChoreCardProps) {
           />
         </CardBody>
         <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-          <Chip color={returnColor(chore.status)}>
+          <Chip color={returnColor(chore.status, chore.daysUntilDue)}>
             {chore.daysSinceCompletion === 0
               ? "Recently completed"
+              : chore.daysUntilDue === 0
+              ? "due today"
               : `next due in ${chore.daysUntilDue} days`}
           </Chip>
           <Avatar src={userAvatar} />
