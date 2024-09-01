@@ -23,6 +23,7 @@ interface ChoreCardProps {
     type: string;
     recurrence: string;
     interval: number;
+    daysUntilDue: number;
     creatorId: string;
     assigneeId: string;
     daysSinceCompletion?: number;
@@ -101,7 +102,7 @@ export default function ChoreCard({ chore, userAvatar }: ChoreCardProps) {
           <Chip color={returnColor(chore.status)}>
             {chore.daysSinceCompletion === 0
               ? "Recently completed"
-              : `last completed ${chore.daysSinceCompletion} days ago`}
+              : `next due in ${chore.daysUntilDue} days`}
           </Chip>
           <Avatar src={userAvatar} />
         </CardFooter>

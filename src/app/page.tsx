@@ -42,6 +42,13 @@ export default async function Home() {
     chore.status = checkIfOverdue(chore.daysSinceCompletion, chore.interval);
   });
 
+  //calculate number of days until the next duedate for this chore
+  chores.forEach((chore: any) => {
+    // Convert interval from weeks to days
+    const intervalInDays = chore.interval * 7;
+    chore.daysUntilDue = intervalInDays - chore.daysSinceCompletion;
+  });
+
   // Sort chores with overdue first (sorted by most overdue), then current (sorted by least overdue)
   const sortedChores = sortChores(chores);
 
