@@ -2,7 +2,6 @@ import {
   Body,
   Button,
   Container,
-  Column,
   Head,
   Heading,
   Hr,
@@ -10,7 +9,6 @@ import {
   Img,
   Link,
   Preview,
-  Row,
   Section,
   Text,
   Tailwind,
@@ -27,7 +25,9 @@ export const CompletionTemplate: React.FC<
 > = ({ status, firstName, title }) => (
   <Html>
     <Head />
-    <Preview>Well done!</Preview>
+    <Preview>
+      {firstName} has completed {title}
+    </Preview>
     <Tailwind>
       <Body className="bg-white my-auto mx-auto font-sans px-2">
         <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
@@ -44,8 +44,8 @@ export const CompletionTemplate: React.FC<
             An update from Nimbus
           </Heading>
           <Text className="text-black text-[14px] leading-[24px]">
-            Great work, {firstName}. <b>{title}</b> is marked complete.It was
-            completed with a status of:{" "}
+            {firstName} has completed task: <b>{title}</b>. It was completed
+            with a status of:{" "}
           </Text>
           <Text
             className={`${
