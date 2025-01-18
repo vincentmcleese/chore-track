@@ -31,7 +31,7 @@ export async function createCompletion(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: ["mcleesevj@gmail.com", "aomcleesevj@gmail.com"],
+        email: ["mcleesevj@gmail.com", "aomcleese@gmail.com"],
         name: session?.user?.name,
         status: choreStatus,
         title: choreTitle,
